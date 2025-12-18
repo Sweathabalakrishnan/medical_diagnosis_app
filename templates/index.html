@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Diagnosis Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🩺 Medical Diagnosis Predictor</h1>
+            <p>Select your symptoms and get instant predictions!</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- SYMPTOM CHECKBOX FORM -->
+            <section class="symptom-form">
+                <form action="/predict" method="POST">
+                    <label>Select Symptoms:</label>
+                    <div class="checkbox-grid">
+                        {% for symptom in symptoms %}
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="symptoms" value="{{ symptom }}">
+                                {{ symptom.replace('_', ' ').title() }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                    <button type="submit">Predict Disease</button>
+                </form>
+            </section>
+
+            <!-- PREDICTION RESULTS -->
+            {% if disease %}
+            <section class="results">
+                <h2>Prediction Result</h2>
+                <div class="card">
+                    <h3>Disease: {{ disease }}</h3>
+                    {% if confidence %}
+                        <p>Confidence: {{ confidence }}%</p>
+                    {% endif %}
+                    <p><strong>Description:</strong> {{ description }}</p>
+
+                    <!-- Top 3 Diseases with Confidence Bars -->
+                    {% if top3 %}
+                    <div class="top3-container">
+                        <h4>Top 3 Possible Diseases</h4>
+                        {% for t in top3 %}
+                        <div class="confidence-bar">
+                            <span>{{ t.disease }} - {{ t.confidence }}%</span>
+                            <div class="bar">
+                                <div class="fill" style="width: {{ t.confidence }}%;"></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Expandable Horizontal Cards -->
+                    <div class="horizontal-cards">
+                        <div class="info-card collapsible-card">
+                            <h4 onclick="toggleCard(this)">Precautions ▼</h4>
+                            <ul class="card-content">
+                                {% for item in precautions %}
+                                    <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="info-card collapsible-card">
+                            <h4 onclick="toggleCard(this)">Medications ▼</h4>
+                            <ul class="card-content">
+                                {% for item in medications %}
+                                    <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="info-card collapsible-card">
+                            <h4 onclick="toggleCard(this)">Diet Recommendations ▼</h4>
+                            <ul class="card-content">
+                                {% for item in diets %}
+                                    <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="info-card collapsible-card">
+                            <h4 onclick="toggleCard(this)">Workout Suggestions ▼</h4>
+                            <ul class="card-content">
+                                {% for item in workout %}
+                                    <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Medical Diagnosis Predictor. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle collapsible cards
+        function toggleCard(element) {
+            const content = element.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                element.innerHTML = element.innerHTML.replace("▲", "▼");
+            } else {
+                content.style.display = "block";
+                element.innerHTML = element.innerHTML.replace("▼", "▲");
+            }
+        }
+    </script>
+</body>
+</html>

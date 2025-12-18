@@ -1,0 +1,201 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right,#f5076a, #2ee6ec,#f38cb7);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fffcfe;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+/* Symptom checkbox form */
+.symptom-form {
+    background: #f38cb7;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    margin-bottom: 2rem;
+}
+
+.symptom-form label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: #f5f5f5;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.checkbox-label:hover {
+    background: #96e9ec;
+}
+
+.checkbox-label input[type="checkbox"] {
+    accent-color: #f10989; /* checkbox color */
+    width: 18px;
+    height: 18px;
+}
+
+.symptom-form button {
+    display: block;
+    width: 50%;
+    padding: 0.8rem;
+    background: #90e49b;
+    background: linear-gradient(to right, #21cb11, #7ee71b);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 1rem;
+    text-align: center;
+    
+}
+
+.symptom-form button:hover {
+    transform: scale(1.05);
+}
+
+/* Prediction Results */
+.results .card {
+    background: #f180c2;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.results h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #0d0250;
+}
+
+.results h3 {
+    margin-bottom: 0.5rem;
+    color: #2306c7;
+}
+
+.results p {
+    margin-bottom: 1rem;
+}
+
+/* Top 3 confidence bars */
+.top3-container {
+    margin: 1rem 0;
+}
+
+.confidence-bar {
+    margin-bottom: 0.5rem;
+}
+
+.confidence-bar span {
+    font-weight: 500;
+}
+
+.confidence-bar .bar {
+    width: 100%;
+    height: 15px;
+    background: #f14a4a;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 0.2rem;
+}
+
+.confidence-bar .fill {
+    height: 100%;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border-radius: 8px 0 0 8px;
+}
+
+/* Horizontal cards for precautions, medications, diet, workout */
+.horizontal-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.info-card {
+    flex: 1 1 220px;
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    min-width: 220px;
+}
+
+/* Collapsible cards */
+.collapsible-card h4 {
+    cursor: pointer;
+    user-select: none;
+}
+
+.collapsible-card .card-content {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+/* Top 3 predictions */
+.top3 {
+    margin-top: 1rem;
+}
+
+.top3 li {
+    padding: 0.3rem 0;
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+}
